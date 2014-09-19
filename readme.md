@@ -1,12 +1,15 @@
 Matrix methods wraps around Array
 
-## init
+## how to use
+
 * as mixin
+
     ```javascript
     var arr = [];
     Matrix(arr); // now `arr` is mixined with matrix methods
     ```
 * as constructor
+
     ```javascript
     var matrix = new Matrix();
     ```
