@@ -4,19 +4,40 @@ describe('Matrix', function() {
         expect(Matrix).toBeDefined();
     });
 });
-describe('if pass object, return `mixin`', function() {
+describe('if pass object, return the `mixin` version', function() {
+    var arr = [], obj;
+    beforeEach(function() {
+        arr = [];
+        obj = Matrix(arr);
+    });
     it('mixin on the object, not on `prototype`', function() {
-        var arr = [];
-        var obj = Matrix(arr);
         expect(obj.row).toBeDefined();
         expect(hasOwn.call(obj, 'row')).toBe(true);
+        expect(hasOwn.call(obj, 'column')).toBe(true);
+        expect(hasOwn.call(obj, 'position')).toBe(true);
+    });
+    it('prototype chain correct', function() {
+        expect(Matrix.prototype.isPrototypeOf(obj)).toBe(false);
+        expect(Array.prototype.isPrototypeOf(obj)).toBe(true);
+        expect(Object.prototype.isPrototypeOf(obj)).toBe(true);
+        expect(Function.prototype.isPrototypeOf(obj)).toBe(false);
     });
 });
 describe('if without parameter, return new instance', function() {
+    var obj;
+    beforeEach(function() {
+        obj = new Matrix();
+    });
     it('property is not defined on the object, but prototype chain', function() {
-        var obj = new Matrix();
         expect(obj.row).toBeDefined();
         expect(hasOwn.call(obj, 'row')).toBe(false);
+        expect(hasOwn.call(obj, 'column')).toBe(false);
+        expect(hasOwn.call(obj, 'position')).toBe(false);
+    });
+    it('prototype chain correct', function() {
+        expect(Matrix.prototype.isPrototypeOf(obj)).toBe(true);
+        expect(Array.prototype.isPrototypeOf(obj)).toBe(true);
+        expect(Function.prototype.isPrototypeOf(obj)).toBe(false);
     });
 });
 describe('used as mixin should work correctly', function() {
