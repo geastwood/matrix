@@ -1,0 +1,21 @@
+{
+  "name": "simple-matrix",
+  "version": "0.1.0",
+  "homepage": "https://github.com/geastwood/matrix",
+  "authors": [
+    "Fei Liu <liu.feiwood@gmail.com>"
+  ],
+  "description": "Simple matrix implementation",
+  "main": "src/matrix.js",
+  "keywords": [
+    "matrix"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
