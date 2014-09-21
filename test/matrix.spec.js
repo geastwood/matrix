@@ -16,7 +16,7 @@ describe('if pass object, return the `mixin` version', function() {
         expect(hasOwn.call(obj, 'column')).toBe(true);
         expect(hasOwn.call(obj, 'position')).toBe(true);
     });
-    it('prototype chain correct', function() {
+    it('prototype chain is correct', function() {
         expect(Matrix.prototype.isPrototypeOf(obj)).toBe(false);
         expect(Array.prototype.isPrototypeOf(obj)).toBe(true);
         expect(Object.prototype.isPrototypeOf(obj)).toBe(true);
@@ -34,7 +34,7 @@ describe('if without parameter, return new instance', function() {
         expect(hasOwn.call(obj, 'column')).toBe(false);
         expect(hasOwn.call(obj, 'position')).toBe(false);
     });
-    it('prototype chain correct', function() {
+    it('prototype chain is correct', function() {
         expect(Matrix.prototype.isPrototypeOf(obj)).toBe(true);
         expect(Array.prototype.isPrototypeOf(obj)).toBe(true);
         expect(Function.prototype.isPrototypeOf(obj)).toBe(false);
@@ -68,14 +68,30 @@ describe('used as mixin should work correctly', function() {
 });
 describe('used as constructor should work correctly', function() {
     var arr;
-    it('create', function() {
+    it('create empty matrix', function() {
+        var m = 5, n = 6;
         arr = new Matrix();
-        arr.create(5, 6);
-        expect(arr.row(1).length).toBe(5);
-        expect(arr.column(1).length).toBe(6);
+        arr.create(m, n);
+        expect(arr.row(1).length).toBe(m);
+        expect(arr.column(1).length).toBe(n);
         arr.position(1, 1, 1);
         arr.position(1, 2, 1);
         expect(arr.column(1).reduce(function(a, b) {return a + b;})).toBe(1);
         expect(arr.row(1).reduce(function(a, b) {return a + b;})).toBe(2);
+    });
+    it('create with parameters', function() {
+        var m = 6, n = 7, defaultValue = null;
+        var arr = new Matrix(m, n, defaultValue);
+        expect(arr.row(1).length).toBe(m);
+        expect(arr.position(1, 2)).toBe(null);
+        arr.position(2, 3, 5);
+        expect(arr.position(2, 3)).toBe(5);
+        expect(arr.column(3).reduce(function(a, b) {return a + b;})).toBe(5);
+    });
+});
+describe('size of a matrix', function() {
+    var arr = new Matrix(5, 5, 1);
+    it('should work', function() {
+        expect(arr.size()).toEqual({m: 5, n: 5});
     });
 });

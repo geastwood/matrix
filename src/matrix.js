@@ -15,8 +15,14 @@ var Matrix = (function() {
 
     // constructor
     var Matrix = function(obj) {
-        if (obj) {
+        // pass array, then mixin and return
+        if (obj && isArray(obj)) {
             return mixin(obj);
+        }
+
+        // create new `matrix` with `m`, `n`, `default`
+        if (arguments.length >= 2) {
+            this.create.apply(this, arguments);
         }
     };
 
@@ -65,10 +71,20 @@ var Matrix = (function() {
         // if pass additional parameter, use as a setter
         if (arguments.length === 3) {
             this[m - 1][n - 1] = v;
-            return this;
+            return this; // if setter, maintain chaining
         } else {
             return this[m - 1][n - 1];
         }
+    };
+
+    Matrix.prototype.size = function() {
+        var m = 0, n = 0;
+        m = this.row(1).length;
+        n = this.column(1).length;
+        return {
+            m: m,
+            n: n
+        };
     };
 
     return Matrix;
