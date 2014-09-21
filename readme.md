@@ -16,6 +16,6 @@ Matrix methods wraps around Array
 
 ## available methods
 
-* matrix.row(m) // get the specified row
-* matrix.column(n) // get the specified column
-* matrix.position(m, n[, v]) // get the specified column, optional `third` as `setter`
+* `matrix.row(m)` -> get the specified row
+* `matrix.column(n)` -> get the specified column
+* `matrix.position(m, n[, v])` -> get the specified column, optional `third` as `setter`

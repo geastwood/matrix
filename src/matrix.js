@@ -1,6 +1,10 @@
 var Matrix = (function() {
     'use strict';
 
+    var isArray = function(obj) {
+        return Object.prototype.toString.call(obj) === '[object Array]';
+    };
+
     var mixin = function(target) {
         for (var prop in Matrix.prototype) {
             target[prop] = Matrix.prototype[prop];
@@ -9,17 +13,14 @@ var Matrix = (function() {
         return target;
     };
 
-    var makeMatrix = function(m, n, v) {
-
-    };
-
+    // constructor
     var Matrix = function(obj) {
         if (obj) {
             return mixin(obj);
         }
     };
 
-    // setup prototype chain
+    // setup prototype chain to inherit `Array`
     var F = function() {};
     F.prototype = Array.prototype;
     Matrix.prototype = new F();
@@ -27,11 +28,13 @@ var Matrix = (function() {
     Matrix.prototype.create = function(m, n, v) {
 
         function makeArray(size, defaultValue) {
+            /* jshint validthis:true */
             var i = -1, rst = this;
 
             while (++i < size) {
-                if (Object.prototype.toString.call(defaultValue) === '[object Array]') {
-                    defaultValue = defaultValue.slice(); // make sure to insert copy of `array`
+                if (isArray(defaultValue)) {
+                    // make sure to insert copy of the `array`
+                    defaultValue = defaultValue.slice();
                 }
                 rst.push(defaultValue);
             }
@@ -42,28 +45,29 @@ var Matrix = (function() {
             v = 0;
         }
 
+        // rebind `this` while calling `makeArray`
         return makeArray.call(this, n, []).map(function(item, i) {
             return makeArray.call(this[i], m, v);
         }, this);
     };
 
-    Matrix.prototype.row = function(x) {
-        return this[x - 1];
+    Matrix.prototype.row = function(m) {
+        return this[m - 1];
     };
 
-    Matrix.prototype.column = function(y) {
+    Matrix.prototype.column = function(n) {
         return this.map(function(row) {
-            return row[y - 1];
+            return row[n - 1];
         });
     };
 
-    Matrix.prototype.position = function(x, y, v) {
+    Matrix.prototype.position = function(m, n, v) {
         // if pass additional parameter, use as a setter
         if (arguments.length === 3) {
-            this[x - 1][y - 1] = v;
+            this[m - 1][n - 1] = v;
             return this;
         } else {
-            return this[x - 1][y - 1];
+            return this[m - 1][n - 1];
         }
     };
 
