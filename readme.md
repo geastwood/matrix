@@ -1,5 +1,10 @@
 Matrix methods wraps around Array
 
+## install
+
+* `bowser install simple-matrix`
+* `npm install simple-matrix`
+
 ## how to use
 
 * as mixin
