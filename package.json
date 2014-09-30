@@ -1,0 +1,26 @@
+{
+  "name": "simple-matrix",
+  "version": "0.1.0",
+  "description": "Simple matrix utility",
+  "main": "src/matrix.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geastwood/matrix.git"
+  },
+  "keywords": [
+    "matrix",
+    "utility"
+  ],
+  "author": "Fei Liu <liu.feiwood@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geastwood/matrix/issues"
+  },
+  "homepage": "https://github.com/geastwood/matrix"
+}

@@ -89,3 +89,6 @@ var Matrix = (function() {
 
     return Matrix;
 }());
+if (typeof module === 'object' && typeof module.exports === 'object') {
+    module.exports = Matrix;
+}
