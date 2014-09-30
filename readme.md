@@ -24,3 +24,8 @@ Matrix methods wraps around Array
 * `matrix.row(m)` -> get the specified row
 * `matrix.column(n)` -> get the specified column
 * `matrix.position(m, n[, v])` -> get the specified column, optional `third` as `setter`
+
+## TODO
+* add loop method
+* add slide&make
+* add dupicate

@@ -52,8 +52,8 @@ var Matrix = (function() {
         }
 
         // rebind `this` while calling `makeArray`
-        return makeArray.call(this, n, []).map(function(item, i) {
-            return makeArray.call(this[i], m, v);
+        return makeArray.call(this, m, []).map(function(item, i) {
+            return makeArray.call(this[i], n, v);
         }, this);
     };
 
@@ -79,8 +79,8 @@ var Matrix = (function() {
 
     Matrix.prototype.size = function() {
         var m = 0, n = 0;
-        m = this.row(1).length;
-        n = this.column(1).length;
+        m = this.column(1).length;
+        n = this.row(1).length;
         return {
             m: m,
             n: n
@@ -89,6 +89,7 @@ var Matrix = (function() {
 
     return Matrix;
 }());
+
 if (typeof module === 'object' && typeof module.exports === 'object') {
     module.exports = Matrix;
 }

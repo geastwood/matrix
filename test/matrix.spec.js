@@ -72,8 +72,8 @@ describe('used as constructor should work correctly', function() {
         var m = 5, n = 6;
         arr = new Matrix();
         arr.create(m, n);
-        expect(arr.row(1).length).toBe(m);
-        expect(arr.column(1).length).toBe(n);
+        expect(arr.row(1).length).toBe(n);
+        expect(arr.column(1).length).toBe(m);
         arr.position(1, 1, 1);
         arr.position(1, 2, 1);
         expect(arr.column(1).reduce(function(a, b) {return a + b;})).toBe(1);
@@ -82,7 +82,7 @@ describe('used as constructor should work correctly', function() {
     it('create with parameters', function() {
         var m = 6, n = 7, defaultValue = null;
         var arr = new Matrix(m, n, defaultValue);
-        expect(arr.row(1).length).toBe(m);
+        expect(arr.row(1).length).toBe(n);
         expect(arr.position(1, 2)).toBe(null);
         arr.position(2, 3, 5);
         expect(arr.position(2, 3)).toBe(5);
@@ -90,8 +90,9 @@ describe('used as constructor should work correctly', function() {
     });
 });
 describe('size of a matrix', function() {
-    var arr = new Matrix(5, 5, 1);
+    var arr = new Matrix(6, 5, 1);
+    console.log(arr);
     it('should work', function() {
-        expect(arr.size()).toEqual({m: 5, n: 5});
+        expect(arr.size()).toEqual({m: 6, n: 5});
     });
 });
