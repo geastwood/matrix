@@ -91,8 +91,28 @@ describe('used as constructor should work correctly', function() {
 });
 describe('size of a matrix', function() {
     var arr = new Matrix(6, 5, 1);
-    console.log(arr);
     it('should work', function() {
         expect(arr.size()).toEqual({m: 6, n: 5});
+    });
+});
+describe('loop', function() {
+    var arr;
+    beforeEach(function() {
+        var m = 5, n = 6, i = 0;
+        arr = new Matrix(5, 6);
+    });
+    it('`this` is bind with array', function() {
+        var local;
+        arr.loop(function(m, n, v) {
+            local = this;
+        });
+        expect(local === arr).toBe(true);
+    });
+    it('loop correctly', function() {
+        var count = 0;
+        arr.loop(function(m, n, v) {
+            count += 1;
+        });
+        expect(30).toBe(30);
     });
 });

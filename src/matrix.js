@@ -87,9 +87,19 @@ var Matrix = (function() {
         };
     };
 
+    Matrix.prototype.loop = function(fn) {
+        var that = this;
+        this.forEach(function(row, i) {
+            row.forEach(function(item, j) {
+                fn.call(that, (i + 1), (j + 1), item);
+            });
+        });
+    };
+
     return Matrix;
 }());
 
+// for node
 if (typeof module === 'object' && typeof module.exports === 'object') {
     module.exports = Matrix;
 }
